@@ -23,6 +23,23 @@ done
 if(( $hc == $tc ))
 then
 	echo "Tie"
+	while(( $(( $hc - $tc )) != 2 || $(( $tc - $hc )) != 2 ))
+	do
+		ran1=$(( $RANDOM%2 ))
+		case $ran1 in
+			0) (( hc++ ))
+				;;
+			1) (( tc++ ))
+				;;
+			*) echo "--"
+		esac
+	done
+	if(( $hc > $tc ))
+        then
+                echo "Head won---> $(( $hc - $tc ))"
+        else
+                echo "Tail won---> $(( $tc - $hc ))"
+        fi
 else
 	echo "Win"
 	if(( $hc > $tc ))
